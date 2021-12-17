@@ -1,0 +1,9 @@
+Bu projede 4 interaktifli araba yapılmıştır.
+Arabada 4wd araba kiti kullanılmıştır.
+Raspberry pi 3b+ kullanılmıştır.
+Arabayı c# arayüzünden sağa sola ileri geri ve dur şekilde manuel olarak kontrol edebilirsiniz.
+Araba mesafe sensörü ile mesafe ölçüp c# arayüzüne yazdırır
+Araba ldr ışık sensörü ile ışık şiddetini ölçüp hava karanlıksa c# ekranına tünele girildi uyarısı verip tünel resmini gösterir.
+Araba yağmur sensörü sayesinde yağmur algılandığında hava durumu bilgisi güneşliyken başta yağmurlu diye değiştirip yağmur görselini bastırır.
+Arabanın önündeki servo motora silecek işlevi görücek mekanizma yapılmıştır.Silecekleri c# üzerinden yavaş orta ve hızlı şekilde çalıştırılır.(her butona bastığınızda 3 kere çalıştırıp durdurur)
+Arabanın önündeki lamba 12 voltla çalışır lambayı c# üzerinden yüksek orta ve düşük şiddette kontrol edip kapatabiliriz.(12v lambanın şiddettini ayarlamak için röle ve IRFZ440N Mosfet kullanılmıştır)
