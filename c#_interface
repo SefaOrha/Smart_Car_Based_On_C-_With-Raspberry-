@@ -1,0 +1,261 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using System.IO;
+using System.Threading;
+using System.Net.Sockets;
+using System.Net;
+namespace WindowsFormsApplication4
+{
+    public partial class ArabaKontrolArayüzü : Form
+    {
+
+       
+
+     public TcpClient Istemci;
+     private NetworkStream AgAkimi;
+     private StreamReader AkimOkuyucu;
+     private StreamWriter AkimYazici;
+     string data = "----";
+        public ArabaKontrolArayüzü()
+        {
+            InitializeComponent();
+        }
+      
+    
+         ArabaKontrolArayüzü a;
+        private void button1_Click(object sender, EventArgs e)
+        {
+            AkimYazici.WriteLine("1");
+            AkimYazici.Flush();
+            
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            AkimYazici.WriteLine("6");
+            AkimYazici.Flush();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            AkimYazici.WriteLine("5");
+            AkimYazici.Flush();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            AkimYazici.WriteLine("4");
+            AkimYazici.Flush();
+                
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            AkimYazici.WriteLine("2");
+            AkimYazici.Flush();
+        }
+
+        private void ArabaKontrolArayüzü_Load(object sender, EventArgs e)
+        {
+            a = new ArabaKontrolArayüzü();
+            Thread t = new Thread(oku);
+            t.Start();
+
+            try
+            {
+                Istemci = new TcpClient("172.20.10.4", 1211);
+            }
+            catch
+            {
+               
+            }
+
+
+            AgAkimi = Istemci.GetStream();
+            AkimOkuyucu = new StreamReader(AgAkimi);
+            AkimYazici = new StreamWriter(AgAkimi);
+
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                
+               
+
+            }
+            catch (Exception Ex)
+            {
+
+
+            }
+            
+           
+            
+
+        }
+        
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+
+            try
+            {
+                AkimYazici.WriteLine(" ");
+                AkimYazici.Flush();
+               
+            }
+            catch (Exception)
+            {
+                
+                
+            }
+ 
+            try 
+	            {
+                    
+		
+                if (data[0].ToString() == "q")
+             {
+                  
+                    label8.Text = data.Trim('q');
+                 
+                }
+
+
+               
+            if (data[0].ToString() == "z")
+            {
+               
+                    label9.Text = data.Trim('z');
+
+                    if (data.Trim('z') == "yagmurlu")
+                    {
+                        pictureBox2.Visible = true;
+                    }
+                    else
+                    {
+                        pictureBox2.Visible = false;
+                    }
+
+                
+
+            }
+            if (data[0].ToString() == "r")
+            {
+
+                label5.Text = data.Trim('r');
+                if (label5.Text == "") {
+                    pictureBox3.Visible = false;
+                    
+                }
+                else
+                {
+                    pictureBox3.Visible = true;
+                   
+                }
+
+
+            }
+            }
+
+	            
+	            catch (Exception)
+	            {
+        
+        }
+        }
+
+     
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            AkimYazici.WriteLine("9");
+            AkimYazici.Flush();
+
+        }
+
+    
+     
+
+   
+
+        private void oku()
+        {
+
+            
+            while (true)
+            {
+                
+                try
+                {
+                    
+                    string IstemciString=AkimOkuyucu.ReadLine();
+                    data = IstemciString;
+                    
+                }
+                catch (Exception Ex)
+                {
+                    
+                }
+     
+
+            }
+        }
+
+  
+        private void button11_Click(object sender, EventArgs e)
+        {
+            AkimYazici.WriteLine("7");
+            AkimYazici.Flush();
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            AkimYazici.WriteLine("8");
+            AkimYazici.Flush();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            AkimYazici.WriteLine("c");
+            AkimYazici.Flush();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            AkimYazici.WriteLine("b");
+            AkimYazici.Flush();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            AkimYazici.WriteLine("a");
+            AkimYazici.Flush();
+        }
+        int x = 200;
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            if (x > 600) { x = 0; }
+            x++;
+            progressBar1.Value = Convert.ToInt16(x / 60);
+            pictureBox1.Left=x;
+        }
+
+       
+
+        private void button9_Click_1(object sender, EventArgs e)
+        {
+            AkimYazici.WriteLine("d");
+            AkimYazici.Flush();
+        }
+        
+    }
+}
